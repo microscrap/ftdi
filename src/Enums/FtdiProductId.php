@@ -1,6 +1,6 @@
 <?php
 
-namespace Fabrication\Bindings\FTDI\Enums;
+namespace Microscrap\Bindings\FTDI\Enums;
 
 /**
  * USB product IDs for FTDI devices ({@link FtdiVendorId::FTDI}).

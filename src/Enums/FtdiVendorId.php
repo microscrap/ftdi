@@ -1,6 +1,6 @@
 <?php
 
-namespace Fabrication\Bindings\FTDI\Enums;
+namespace Microscrap\Bindings\FTDI\Enums;
 
 /** USB vendor IDs for FTDI and common third-party FTDI-based adapters (FTDI VID). */
 enum FtdiVendorId: int
