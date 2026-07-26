@@ -2,7 +2,7 @@
     "name": "microscrap/ftdi",
     "description": "libFTDI Bindings for The PHP FTDI Extension",
     "type": "library",
-    "version": "0.5.1",
+    "version": "0.5.2",
     "keywords": ["framework", "scrapyard-io"],
     "license": "MIT",
     "homepage": "https://dosr.projectsaturnstudios.com",
