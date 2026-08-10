@@ -1,8 +1,16 @@
-# microscrap/ftdi - libFTDI helper bindings for ScrapyardIO
+# microscrap/ftdi — libFTDI bindings for PHP
 
-PHP helper library that wraps the [**ftdi** extension](https://github.com/php-io-extensions/ftdi) with global functions and enums. Each helper delegates to `Ftdi\FTDI`.
+> **Docs (production):** [ScrapyardIO · microscrap/ftdi 0.7.x](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/ftdi/0.7.x/overview)
 
-This project provides direct bindings to [libftdi1](https://www.intra2net.com/en/developer/libftdi/) through helper-style globals.
+[![Docs](https://img.shields.io/badge/docs-ScrapyardIO-0ea5e9?logo=readthedocs&logoColor=white)](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/ftdi/0.7.x/overview)
+[![Packagist Version](https://img.shields.io/packagist/v/microscrap/ftdi.svg?label=packagist)](https://packagist.org/packages/microscrap/ftdi)
+[![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/ftdi.svg)](https://packagist.org/packages/microscrap/ftdi)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Requires ext-ftdi](https://img.shields.io/badge/ext--ftdi-%5E0.7-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/ftdi)
+
+PHP helper library that wraps the [**ftdi**](https://github.com/php-io-extensions/ftdi) extension (`ext-ftdi`) with global functions and enums. Each helper delegates to `Ftdi\FTDI`.
+
+This is the **bindings** package — not the native extension. Ecosystem docs: [`0.7.x`](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/ftdi/0.7.x/overview).
 
 ## Highlights
 
@@ -11,11 +19,12 @@ This project provides direct bindings to [libftdi1](https://www.intra2net.com/en
 * USB open/read/write/flush/reset operations
 * EEPROM read/write/decode/build operations
 * Async transfer submission and completion
+* Optional VID/PID enums (`FtdiVendorId`, `FtdiProductId`) with **FULLY UPPERCASE** cases
 
 ## Requirements
 
-* PHP 8.3+
-* **ext-ftdi** ^0.4.0 - install from [php-io-extensions/ftdi](https://github.com/php-io-extensions/ftdi)
+* PHP `^8.4|^8.5|^8.6`
+* **ext-ftdi** `^0.7.0` — install from [php-io-extensions/ftdi](https://github.com/php-io-extensions/ftdi)
 * Runtime dependency of ext-ftdi:
   * Debian/Ubuntu/Raspberry Pi OS: `libftdi1-2` (dev package for builds: `libftdi1-dev`)
   * macOS: `brew install libftdi`
@@ -31,14 +40,21 @@ php -m | grep ftdi
 Install the helper package:
 
 ```bash
-composer require microscrap/ftdi
+composer require microscrap/ftdi:^0.7.0
 ```
 
-Composer autoloads `src/Helpers/ftdi.php`, registering global helpers when installed.
+Composer autoloads `src/Helpers/ftdi.php`, registering global helpers when installed. Helpers are only defined when a function name is not already taken (`function_exists` guard).
+
+Suggested peers:
+
+```bash
+composer require microscrap/mpsse:^0.7.0          # MPSSE SPI/I2C/GPIO
+composer require scrapyard-io/gpio-framework:^0.7 # higher adapters
+```
 
 ## Usage
 
-FTDI bindings are exposed as **global helper functions** (`ftdi_new`, `ftdi_usb_open`, etc). Helpers are only defined when a function name is not already taken (`function_exists` guard), matching the style used in other microscrap binding packages.
+FTDI bindings are exposed as **global helper functions** (`ftdi_new`, `ftdi_usb_open`, etc).
 
 Optional enums are available under:
 
@@ -48,6 +64,9 @@ Optional enums are available under:
 ```php
 <?php
 
+use Microscrap\Bindings\FTDI\Enums\FtdiProductId;
+use Microscrap\Bindings\FTDI\Enums\FtdiVendorId;
+
 $ftdi = ftdi_new();
 if ($ftdi->handle < 0) {
     throw new RuntimeException('ftdi_new failed');
@@ -56,7 +75,7 @@ if ($ftdi->handle < 0) {
 ftdi_init($ftdi);
 
 // FT232RL defaults: vendor 0x0403, product 0x6001
-if (ftdi_usb_open($ftdi, 0x0403, 0x6001) !== 0) {
+if (ftdi_usb_open($ftdi, FtdiVendorId::FTDI->value, FtdiProductId::FT232R->value) !== 0) {
     throw new RuntimeException(ftdi_get_error_string($ftdi));
 }
 
@@ -71,7 +90,9 @@ ftdi_deinit($ftdi);
 ftdi_free($ftdi);
 ```
 
-Constants and enum values follow libftdi1 conventions. Define them in PHP or load them from your platform headers.
+Constants and enum values follow libftdi1 conventions. Prefer the shipped enums for VID/PID; other framing/bitmode constants come from your platform headers or higher packages (`microscrap/mpsse`).
+
+There is **no** ServiceProvider / Chassis discovery in this package — bindings only.
 
 ---
 

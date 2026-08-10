@@ -2,10 +2,20 @@
     "name": "microscrap/ftdi",
     "description": "libFTDI Bindings for The PHP FTDI Extension",
     "type": "library",
-    "version": "0.5.2",
-    "keywords": ["framework", "scrapyard-io"],
+    "version": "0.7.0",
+    "keywords": [
+        "framework",
+        "scrapyard-io",
+        "ftdi",
+        "bindings"
+    ],
     "license": "MIT",
-    "homepage": "https://dosr.projectsaturnstudios.com",
+    "homepage": "https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/ftdi/0.7.x/overview",
+    "support": {
+        "docs": "https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/ftdi/0.7.x/overview",
+        "source": "https://github.com/microscrap/ftdi",
+        "issues": "https://github.com/microscrap/ftdi/issues"
+    },
     "authors": [
         {
             "name": "Angel Gonzalez",
@@ -13,8 +23,12 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "ext-ftdi": "^0.4.3|^0.5.0"
+        "php": "^8.4|^8.5|^8.6",
+        "ext-ftdi": "^0.7.0"
+    },
+    "suggest": {
+        "microscrap/mpsse": "^0.7 — MPSSE SPI/I2C/GPIO helpers built on this package",
+        "scrapyard-io/gpio-framework": "^0.7 — higher-level FTDI UART / USB adapters"
     },
     "autoload": {
         "psr-4": {
@@ -31,6 +45,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.7.x-dev",
+            "dev-main": "0.7.x-dev",
+            "dev-0.7.x": "0.7.x-dev"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
