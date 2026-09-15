@@ -2,7 +2,7 @@
     "name": "microscrap/ftdi",
     "description": "libFTDI Bindings for The PHP FTDI Extension",
     "type": "library",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "keywords": [
         "framework",
         "scrapyard-io",
@@ -24,10 +24,10 @@
     ],
     "require": {
         "php": "^8.4|^8.5|^8.6",
-        "ext-ftdi": "^0.7.0"
+        "ext-ftdi": "^0.8.0"
     },
     "suggest": {
-        "microscrap/mpsse": "^0.7 — MPSSE SPI/I2C/GPIO helpers built on this package",
+        "microscrap/mpsse": "^0.8.0 - MPSSE SPI/I2C/GPIO helpers built on this package",
         "scrapyard-io/gpio-framework": "^0.7 — higher-level FTDI UART / USB adapters"
     },
     "autoload": {
@@ -48,9 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.7.x-dev",
-            "dev-main": "0.7.x-dev",
-            "dev-0.7.x": "0.7.x-dev"
+            "dev-main": "0.8.x-dev"
         }
     },
     "minimum-stability": "dev",
