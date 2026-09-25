@@ -4,7 +4,7 @@
 
 ## Role
 
-Bindings-only Composer package over **ext-ftdi** (`php-io-extensions/ftdi` ^0.8.0). Global helpers + VID/PID enums. No GFX, no ServiceProvider, no Chassis/Core/Fabricate wiring.
+Bindings-only Composer package over **ext-ftdi** (`php-io-extensions/ftdi` ^0.9.0). Global helpers + VID/PID enums. No GFX, no ServiceProvider, no Chassis/Core/Fabricate wiring.
 
 ## Rules
 
@@ -15,7 +15,7 @@ Bindings-only Composer package over **ext-ftdi** (`php-io-extensions/ftdi` ^0.8.
 * No class-level constants; no ServiceProvider / Chassis discovery in this package.
 * Extension DTOs (`FTDIContext`, `FTDIEeprom`, …) are public API — do not invent parallel DataObjects.
 * Tests are minimal stubs — do not invent a CoverageDrift suite unless explicitly requested.
-* Suggested peers only: `microscrap/mpsse`, `scrapyard-io/gpio-framework` — do not pull their APIs into this package.
+* Suggested peers only: `microscrap/mpsse`, `scrapyard-io/framework` — do not pull their APIs into this package.
 
 ## Quick OKF map
 

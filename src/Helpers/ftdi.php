@@ -286,6 +286,54 @@ if(!function_exists('ftdi_transfer_data_cancel'))
     }
 }
 
+if(!function_exists('ftdi_get_pollfds'))
+{
+    function ftdi_get_pollfds(FTDIContext $ftdi): array
+    {
+        return FTDI::ftdiGetPollfds($ftdi);
+    }
+}
+
+if(!function_exists('ftdi_pollfds_handle_timeouts'))
+{
+    function ftdi_pollfds_handle_timeouts(FTDIContext $ftdi): int
+    {
+        return FTDI::ftdiPollfdsHandleTimeouts($ftdi);
+    }
+}
+
+if(!function_exists('ftdi_get_next_timeout'))
+{
+    function ftdi_get_next_timeout(FTDIContext $ftdi): array
+    {
+        return FTDI::ftdiGetNextTimeout($ftdi);
+    }
+}
+
+if(!function_exists('ftdi_handle_events_timeout'))
+{
+    function ftdi_handle_events_timeout(FTDIContext $ftdi, int $timeout_us): int
+    {
+        return FTDI::ftdiHandleEventsTimeout($ftdi, $timeout_us);
+    }
+}
+
+if(!function_exists('ftdi_transfer_completed'))
+{
+    function ftdi_transfer_completed(FTDITransferControl $tc): int
+    {
+        return FTDI::ftdiTransferCompleted($tc);
+    }
+}
+
+if(!function_exists('ftdi_transfer_read_done'))
+{
+    function ftdi_transfer_read_done(FTDITransferControl $tc): string|false
+    {
+        return FTDI::ftdiTransferReadDone($tc);
+    }
+}
+
 if(!function_exists('ftdi_write_data_set_chunksize'))
 {
     function ftdi_write_data_set_chunksize(FTDIContext $ftdi, int $chunksize): int

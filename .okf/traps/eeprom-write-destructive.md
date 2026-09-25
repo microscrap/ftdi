@@ -37,7 +37,7 @@ This package does **not** add safety rails, confirmations, or dry-run modes — 
 # Related
 
 * [Helpers → FTDI → ext](../architecture/helpers-ftdi-ext.md)
-* [Package (0.7)](../orientation/package.md)
+* [Package (0.9)](../orientation/package.md)
 
 [^readme]: EEPROM helpers listed in API table
 [^helpers]: write/erase EEPROM helpers

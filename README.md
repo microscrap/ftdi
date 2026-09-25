@@ -6,7 +6,7 @@
 [![Packagist Version](https://img.shields.io/packagist/v/microscrap/ftdi.svg?label=packagist)](https://packagist.org/packages/microscrap/ftdi)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/ftdi.svg)](https://packagist.org/packages/microscrap/ftdi)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Requires ext-ftdi](https://img.shields.io/badge/ext--ftdi-%5E0.7-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/ftdi)
+[![Requires ext-ftdi](https://img.shields.io/badge/ext--ftdi-%5E0.9.0-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/ftdi)
 
 PHP helper library that wraps the [**ftdi**](https://github.com/php-io-extensions/ftdi) extension (`ext-ftdi`) with global functions and enums. Each helper delegates to `Ftdi\FTDI`.
 
@@ -24,7 +24,7 @@ This is the **bindings** package — not the native extension. Ecosystem docs: [
 ## Requirements
 
 * PHP `^8.4|^8.5|^8.6`
-* **ext-ftdi** `^0.7.0` — install from [php-io-extensions/ftdi](https://github.com/php-io-extensions/ftdi)
+* **ext-ftdi** `^0.9.0` — install from [php-io-extensions/ftdi](https://github.com/php-io-extensions/ftdi)
 * Runtime dependency of ext-ftdi:
   * Debian/Ubuntu/Raspberry Pi OS: `libftdi1-2` (dev package for builds: `libftdi1-dev`)
   * macOS: `brew install libftdi`
@@ -40,7 +40,7 @@ php -m | grep ftdi
 Install the helper package:
 
 ```bash
-composer require microscrap/ftdi:^0.7.0
+composer require microscrap/ftdi:^0.9.0
 ```
 
 Composer autoloads `src/Helpers/ftdi.php`, registering global helpers when installed. Helpers are only defined when a function name is not already taken (`function_exists` guard).
@@ -48,8 +48,8 @@ Composer autoloads `src/Helpers/ftdi.php`, registering global helpers when insta
 Suggested peers:
 
 ```bash
-composer require microscrap/mpsse:^0.7.0          # MPSSE SPI/I2C/GPIO
-composer require scrapyard-io/gpio-framework:^0.7 # higher adapters
+composer require microscrap/mpsse:^0.9.0          # MPSSE SPI/I2C/GPIO
+composer require scrapyard-io/framework:^0.9.0    # higher adapters
 ```
 
 ## Usage
@@ -187,6 +187,12 @@ Returns the last libftdi1 error string (`ftdi_get_error_string`).
 | `ftdi_read_data_submit` | `ftdi_read_data_submit(Ftdi\FTDIContext $ftdi, int $size): Ftdi\FTDITransferControl` |
 | `ftdi_transfer_data_done` | `ftdi_transfer_data_done(Ftdi\FTDITransferControl $tc): int` |
 | `ftdi_transfer_data_cancel` | `ftdi_transfer_data_cancel(Ftdi\FTDITransferControl $tc): void` |
+| `ftdi_get_pollfds` | `ftdi_get_pollfds(Ftdi\FTDIContext $ftdi): array` |
+| `ftdi_pollfds_handle_timeouts` | `ftdi_pollfds_handle_timeouts(Ftdi\FTDIContext $ftdi): int` |
+| `ftdi_get_next_timeout` | `ftdi_get_next_timeout(Ftdi\FTDIContext $ftdi): array` |
+| `ftdi_handle_events_timeout` | `ftdi_handle_events_timeout(Ftdi\FTDIContext $ftdi, int $timeout_us): int` |
+| `ftdi_transfer_completed` | `ftdi_transfer_completed(Ftdi\FTDITransferControl $tc): int` |
+| `ftdi_transfer_read_done` | `ftdi_transfer_read_done(Ftdi\FTDITransferControl $tc): string\|false` |
 | `ftdi_write_data_set_chunksize` | `ftdi_write_data_set_chunksize(Ftdi\FTDIContext $ftdi, int $chunksize): int` |
 | `ftdi_write_data_get_chunksize` | `ftdi_write_data_get_chunksize(Ftdi\FTDIContext $ftdi): int` |
 | `ftdi_read_data` | `ftdi_read_data(Ftdi\FTDIContext $ftdi, int $size): string` |

@@ -32,7 +32,7 @@ Optional convenience tokens for common FTDI USB vendor/product IDs. Framing, bit
 - No class-level constants in `src/`.[^agents]
 - Pass `->value` (or accept `Enum|int` at call sites) into helpers that take raw `int` VID/PID.[^readme]
 
-# Enum inventory (0.7.0)
+# Enum inventory (0.9.0)
 
 | Enum | Cases (summary) |
 |------|-----------------|
@@ -42,7 +42,7 @@ Optional convenience tokens for common FTDI USB vendor/product IDs. Framing, bit
 # Related
 
 * [1:1 extension wrap](one-to-one-extension-wrap.md)
-* [Package (0.7)](../orientation/package.md)
+* [Package (0.9)](../orientation/package.md)
 
 [^readme]: Enum namespaces and UPPERCASE note
 [^vendor]: FtdiVendorId enum

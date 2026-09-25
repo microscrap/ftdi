@@ -33,12 +33,12 @@ This package only wraps the extension — it does not install udev rules or unlo
 - Confirm **ext-ftdi** and host libftdi are installed (see README OS packages).[^readme]
 - On Linux: ensure the device is available to libusb/libftdi (unbind `ftdi_sio` / appropriate udev rules for `0x0403` products as needed).
 - Check return codes and `ftdi_get_error_string($ctx)` after open attempts.[^helpers]
-- Higher-level adapters may live in `scrapyard-io/gpio-framework` — still expect host USB setup to be correct.
+- Higher-level adapters may live in `scrapyard-io/framework` — still expect host USB setup to be correct.
 
 # Related
 
 * [Helpers → FTDI → ext](../architecture/helpers-ftdi-ext.md)
-* [Package (0.7)](../orientation/package.md)
+* [Package (0.9)](../orientation/package.md)
 
 [^readme]: Requirements and open usage
 [^helpers]: ftdi_usb_open and error string helpers

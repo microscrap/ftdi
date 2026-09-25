@@ -47,8 +47,29 @@ Rules:[^agents][^readme]
 | `ftdi_usb_open($ctx, $vid, $pid)` | `FTDI::ftdiUSBOpen(...)` |
 | `ftdi_read_data($ctx, $size)` | `FTDI::ftdiReadData(...)` |
 | `set_ft232h_cbus($eeprom)` | `FTDI::setFT232HCbus(...)` (CBUS helper; non-`ftdi_` prefix) |
+| `ftdi_get_pollfds($ctx)` | `FTDI::ftdiGetPollfds(...)` |
+| `ftdi_pollfds_handle_timeouts($ctx)` | `FTDI::ftdiPollfdsHandleTimeouts(...)` |
+| `ftdi_get_next_timeout($ctx)` | `FTDI::ftdiGetNextTimeout(...)` |
+| `ftdi_handle_events_timeout($ctx, $timeout_us)` | `FTDI::ftdiHandleEventsTimeout(...)` |
+| `ftdi_transfer_completed($tc)` | `FTDI::ftdiTransferCompleted(...)` |
+| `ftdi_transfer_read_done($tc)` | `FTDI::ftdiTransferReadDone(...)` |
 
 Helper names follow libftdi / C-ish snake_case; extension methods use the extension’s camelCase surface.[^helpers]
+
+# Event pump (0.9.0)
+
+Six 1:1 wrappers over the ext-ftdi libusb event-pump bindings:
+
+| Helper | Signature |
+|--------|-----------|
+| `ftdi_get_pollfds` | `ftdi_get_pollfds(FTDIContext $ftdi): array` |
+| `ftdi_pollfds_handle_timeouts` | `ftdi_pollfds_handle_timeouts(FTDIContext $ftdi): int` |
+| `ftdi_get_next_timeout` | `ftdi_get_next_timeout(FTDIContext $ftdi): array` |
+| `ftdi_handle_events_timeout` | `ftdi_handle_events_timeout(FTDIContext $ftdi, int $timeout_us): int` |
+| `ftdi_transfer_completed` | `ftdi_transfer_completed(FTDITransferControl $tc): int` |
+| `ftdi_transfer_read_done` | `ftdi_transfer_read_done(FTDITransferControl $tc): string\|false` |
+
+After `ftdi_transfer_data_done` / `ftdi_transfer_read_done` / `ftdi_transfer_data_cancel` the control's `handle` and `bufHandle` are `0`; the extension frees the buffer. Do not call a terminal method twice on the same control.
 
 # Autoload
 

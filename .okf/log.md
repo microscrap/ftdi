@@ -1,3 +1,6 @@
+## 2026-09-23
+* **Update**: 0.9.0 line over ext-ftdi 0.9.0. New helpers `ftdi_get_pollfds`, `ftdi_pollfds_handle_timeouts`, `ftdi_get_next_timeout`, `ftdi_handle_events_timeout`, `ftdi_transfer_completed`, `ftdi_transfer_read_done`. Note: after `ftdi_transfer_data_done` / `ftdi_transfer_read_done` / `ftdi_transfer_data_cancel` the control's `handle` and `bufHandle` are `0`; the extension frees the buffer. Pest added as require-dev with one signature test.
+
 ## 2026-09-14
 * **Update**: relabeled 0.7.0 → 0.8.0 with `ext-posi` / `ext-ftdi` 0.8.0. No code change.
 
